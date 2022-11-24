@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { BaseColaboradores } from "./BaseColaboradores";
+import Buscador from "./components/Buscador";
+import Formulario from "./components/Formulario";
+import Listado from "./components/Listado";
 
 function App() {
+  const [listadoColaboradores, setListadoColaboradores] =
+    useState(BaseColaboradores);
+
+  const [busqueda, setBusqueda] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <Buscador busqueda={busqueda} setBusqueda={setBusqueda} />
       </header>
+
+      <main className="container-fluid">
+        <Formulario
+          listadoColaboradores={listadoColaboradores}
+          setListadoColaboradores={setListadoColaboradores}
+        />
+        <Listado
+          listadoColaboradores={listadoColaboradores}
+          busqueda={busqueda}
+        />
+      </main>
     </div>
   );
 }
