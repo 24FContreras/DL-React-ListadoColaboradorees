@@ -22,7 +22,13 @@ function App() {
           setListadoColaboradores={setListadoColaboradores}
         />
         <Listado
-          listadoColaboradores={listadoColaboradores}
+          listadoColaboradores={
+            busqueda.length !== 0
+              ? listadoColaboradores.filter((item) =>
+                  item.nombre.toLowerCase().includes(busqueda.toLowerCase())
+                )
+              : listadoColaboradores
+          }
           busqueda={busqueda}
         />
       </main>
